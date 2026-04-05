@@ -6,133 +6,7 @@
 (function () {
   'use strict';
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 768;
-
-  /* ── Ember Particles ── */
-  function initEmberParticles() {
-    if (prefersReducedMotion || isMobile) return;
-
-    const canvas = document.getElementById('ember-canvas');
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    const particles = [];
-    const PARTICLE_COUNT = 40;
-
-    function resize() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    class Ember {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = canvas.height + Math.random() * 100;
-        this.size = Math.random() * 2.5 + 0.5;
-        this.speedY = -(Math.random() * 0.8 + 0.3);
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.6 + 0.2;
-        this.decay = Math.random() * 0.003 + 0.001;
-        this.wobble = Math.random() * Math.PI * 2;
-        this.wobbleSpeed = Math.random() * 0.02 + 0.01;
-
-        // Color: gold to orange
-        const hue = Math.random() * 30 + 20; // 20-50
-        const sat = Math.random() * 30 + 70;
-        this.color = `hsla(${hue}, ${sat}%, 60%, `;
-      }
-
-      update() {
-        this.wobble += this.wobbleSpeed;
-        this.x += this.speedX + Math.sin(this.wobble) * 0.3;
-        this.y += this.speedY;
-        this.opacity -= this.decay;
-
-        if (this.opacity <= 0 || this.y < -20) {
-          this.reset();
-        }
-      }
-
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color + this.opacity + ')';
-        ctx.shadowBlur = this.size * 4;
-        ctx.shadowColor = this.color + (this.opacity * 0.5) + ')';
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-    }
-
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const p = new Ember();
-      p.y = Math.random() * canvas.height; // Start distributed
-      particles.push(p);
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const p of particles) {
-        p.update();
-        p.draw();
-      }
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  }
-
-  /* ── Custom Cursor ─�� */
-  function initCustomCursor() {
-    if (isMobile || prefersReducedMotion) return;
-
-    const cursor = document.getElementById('cursorRing');
-    if (!cursor) return;
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    // Expand cursor on interactive elements
-    const interactives = 'a, button, .menu-item, .gallery-item, .nav-reserve-btn, .btn-reserve';
-
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest(interactives)) {
-        cursor.classList.add('expanded');
-      }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest(interactives)) {
-        cursor.classList.remove('expanded');
-      }
-    });
-
-    function updateCursor() {
-      // Smooth follow with lerp
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      requestAnimationFrame(updateCursor);
-    }
-
-    updateCursor();
-  }
 
   /* ── Lightbox ── */
   function initLightbox() {
@@ -240,8 +114,6 @@
   /* ── Init ── */
   document.addEventListener('DOMContentLoaded', () => {
     initImageFallbacks();
-    initEmberParticles();
-    initCustomCursor();
     initLightbox();
   });
 })();
