@@ -1,0 +1,13 @@
+{
+  "name": "ember-and-oak",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ember & Oak - Luxury Restaurant Demo Website",
+  "scripts": {
+    "nanobanana:generate": "tsx nanobanana/generate-restaurant-images.ts",
+    "serve": "npx serve -s ."
+  },
+  "dependencies": {
+    "playwright": "^1.59.1"
+  }
+}

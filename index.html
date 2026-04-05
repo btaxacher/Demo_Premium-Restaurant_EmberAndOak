@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ember & Oak | Upscale Dining</title>
+  <meta name="description" content="Ember & Oak — A study in smoke. Wood-fired cuisine and bespoke spirits in an intimate, nocturnal setting.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ember & Oak | Upscale Dining">
+  <meta property="og:description" content="Wood-fired cuisine and bespoke spirits. An intimate, nocturnal dining experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-bg.png">
+
+  <!-- Favicon (flame icon as SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z' fill='%23C5A069'/%3E%3C/svg%3E">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z"/>
+    </svg>
+  </div>
+
+  <!-- Ambient Layers -->
+  <div class="ambient-lighting" aria-hidden="true"></div>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="frame-lines" aria-hidden="true"></div>
+
+  <!-- Marginalia -->
+  <div class="marginalia marg-left" aria-hidden="true">No. 42 — Upper East Side</div>
+  <div class="marginalia marg-right" aria-hidden="true">Est. MMXIV — Nocturnal Service</div>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <nav class="site-nav" id="siteNav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand" aria-label="Ember & Oak - Home">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z"/>
+        </svg>
+        <span class="nav-brand-text">Ember & Oak</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#philosophy" data-section="philosophy">Philosophy</a></li>
+        <li><a href="#menu" data-section="menu">Menu</a></li>
+        <li><a href="#gallery" data-section="gallery">Gallery</a></li>
+      </ul>
+
+      <a href="#reservation" class="nav-reserve-btn">Reserve</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-bg-image fallback" aria-hidden="true"></div>
+    <canvas id="ember-canvas" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <svg class="brand-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z"/>
+      </svg>
+
+      <h1 class="main-title">
+        <span class="word"><span class="word-inner gold-foil">Ember</span></span>
+        <span class="ampersand">&</span>
+        <span class="word"><span class="word-inner gold-foil">Oak</span></span>
+      </h1>
+
+      <div class="hero-subtitle">
+        <span>Wood-Fired</span>
+        <span class="dot" aria-hidden="true">·</span>
+        <span>Bespoke Spirits</span>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══ PHILOSOPHY ═══ -->
+  <section id="philosophy" class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-text">
+        <span class="label reveal">The Ethos</span>
+        <div class="ornament-divider reveal">
+          <span class="ornament-line"></span>
+          <span class="ornament-diamond"></span>
+          <span class="ornament-line"></span>
+        </div>
+        <h2 class="philosophy-heading gold-foil reveal">A Study in Smoke.</h2>
+        <p class="reveal">
+          <span class="drop-cap">W</span>e believe that heat is an ingredient. Stripped of pretense, fine dining returns to its primal roots: fire, wood, and time. In the hushed glow of our dining room, ingredients are coaxed to their absolute limits over open embers of white oak and cherry.
+        </p>
+        <p class="reveal">
+          Our cellar houses vintages selected not just for pedigree, but for their ability to stand up to the robust, unapologetic flavors forged in our hearth.
+        </p>
+      </div>
+
+      <div class="philosophy-image-wrap reveal-right">
+        <img
+          src="assets/images/philosophy.png"
+          onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop'"
+          alt="Red wine being poured in dramatic golden lighting"
+          class="philosophy-image"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MENU ═══ -->
+  <section id="menu" class="container">
+    <div class="reveal">
+      <span class="label" style="display:block; text-align:center; margin-bottom:var(--space-sm);">Curated Offerings</span>
+      <h2 class="heading-section gold-foil">From the Hearth</h2>
+
+      <div class="menu-divider">
+        <svg viewBox="0 0 100 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M0 5 L45 5 M55 5 L100 5 M50 2 L50 8" stroke="currentColor" stroke-width="0.5" fill="none"/>
+          <circle cx="50" cy="5" r="2"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="menu-list">
+      <article class="menu-item reveal">
+        <div class="menu-header">
+          <h3 class="dish-name">Roasted Bone Marrow</h3>
+          <span class="dish-price">28</span>
+        </div>
+        <p class="dish-desc">Caramelized onion jam, parsley salad, smoked sea salt, toasted brioche.</p>
+      </article>
+
+      <article class="menu-item reveal">
+        <div class="menu-header">
+          <h3 class="dish-name">Aged Tomahawk Ribeye</h3>
+          <span class="dish-price">145</span>
+        </div>
+        <p class="dish-desc">45-day dry-aged, charred over white oak, rendered beef fat vinaigrette, blistered alliums.</p>
+      </article>
+
+      <article class="menu-item reveal">
+        <div class="menu-header">
+          <h3 class="dish-name">Smoked King Oyster Mushroom</h3>
+          <span class="dish-price">34</span>
+        </div>
+        <p class="dish-desc">Confit in wagyu tallow, black garlic pur&eacute;e, crispy sunchokes, winter truffle.</p>
+      </article>
+
+      <article class="menu-item reveal">
+        <div class="menu-header">
+          <h3 class="dish-name">The Velvet Smoke</h3>
+          <span class="dish-price">22</span>
+        </div>
+        <p class="dish-desc">Mezcal, sweet vermouth, amaro, hickory smoke, expressed orange peel.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ GALLERY ═══ -->
+  <section id="gallery">
+    <div class="reveal" style="text-align:center; margin-bottom:var(--space-lg);">
+      <span class="label">The Atmosphere</span>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item g-1 reveal-scale" data-lightbox="0">
+        <img
+          src="assets/images/gallery-cocktail.png"
+          onerror="this.src='https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop'"
+          alt="Craft cocktail with smoke wisps in amber lighting"
+          class="gallery-img"
+          loading="lazy"
+        >
+        <div class="gallery-caption"><span>The Velvet Smoke</span></div>
+      </div>
+
+      <div class="gallery-item g-2 reveal-scale" data-lightbox="1">
+        <img
+          src="assets/images/gallery-dining.png"
+          onerror="this.src='https://images.unsplash.com/photo-1578474846511-04ba529f0b88?q=80&w=800&auto=format&fit=crop'"
+          alt="Intimate candlelit dining table with gold-rimmed plates"
+          class="gallery-img"
+          loading="lazy"
+        >
+        <div class="gallery-caption"><span>The Private Table</span></div>
+      </div>
+
+      <div class="gallery-item g-3 reveal-scale" data-lightbox="2">
+        <img
+          src="assets/images/gallery-steak.png"
+          onerror="this.src='https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop'"
+          alt="Wood-fired tomahawk steak with ember glow"
+          class="gallery-img"
+          loading="lazy"
+        >
+        <div class="gallery-caption"><span>The Tomahawk</span></div>
+      </div>
+
+      <div class="gallery-item g-4 reveal-scale" data-lightbox="3">
+        <img
+          src="assets/images/philosophy.png"
+          onerror="this.src='https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop'"
+          alt="Red wine being poured with dramatic light"
+          class="gallery-img"
+          loading="lazy"
+        >
+        <div class="gallery-caption"><span>The Cellar Selection</span></div>
+      </div>
+
+      <div class="gallery-item g-5 reveal-scale" data-lightbox="4">
+        <img
+          src="assets/images/hero-bg.png"
+          onerror="this.src='https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=800&auto=format&fit=crop'"
+          alt="Moody luxury restaurant interior with warm ember glow"
+          class="gallery-img"
+          loading="lazy"
+        >
+        <div class="gallery-caption"><span>The Dining Room</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ RESERVATION CTA ═══ -->
+  <section id="reservation">
+    <div class="reservation-bg fallback" aria-hidden="true"></div>
+    <div class="reservation-overlay" aria-hidden="true"></div>
+
+    <div class="reservation-content">
+      <span class="label reveal" style="display:block; margin-bottom:var(--space-sm);">By Invitation & Reservation</span>
+      <h2 class="reservation-heading gold-foil reveal">An Evening Awaits</h2>
+      <p class="reservation-subtitle reveal">Join us for an unforgettable dining experience where fire meets artistry.</p>
+      <div class="ornament-divider reveal">
+        <span class="ornament-line"></span>
+        <span class="ornament-diamond"></span>
+        <span class="ornament-line"></span>
+      </div>
+      <div class="reveal" style="margin-top: var(--space-md);">
+        <a href="#" class="btn-reserve">Reserve Your Table</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer id="footer">
+    <div class="container">
+      <!-- Watermark -->
+      <svg class="footer-watermark" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z"/>
+      </svg>
+
+      <div class="footer-info reveal">
+        <p>Dinner Service: Tuesday — Sunday, 5pm to 11pm</p>
+        <p>124 East 64th Street, New York, NY</p>
+      </div>
+
+      <!-- Social Icons -->
+      <div class="footer-social reveal">
+        <a href="#" aria-label="Follow us on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="Follow us on Facebook">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+
+      <p class="footer-inquiries reveal">
+        Private dining inquiries — <a href="mailto:events@emberandoak.com">events@emberandoak.com</a>
+      </p>
+
+      <div class="reveal" style="margin-top: var(--space-md);">
+        <svg class="brand-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="opacity:0.3; margin:0 auto;" aria-hidden="true">
+          <path d="M12 0C12 0 8 4 8 10C8 14 10.5 16 10.5 16C10.5 16 9 14.5 9 12C9 14.5 11 18 12 24C13 18 15 14.5 15 12C15 14.5 13.5 16 13.5 16C13.5 16 16 14 16 10C16 4 12 0 12 0Z"/>
+        </svg>
+      </div>
+
+      <p class="footer-copyright">&copy; 2024 Ember & Oak. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer" aria-hidden="true">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&#8250;</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <!-- Scripts (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- App Scripts -->
+  <script src="js/effects.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

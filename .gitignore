@@ -1,0 +1,6 @@
+node_modules/
+.nanobanana-profile/
+*.output
+.playwright-mcp/
+*.png
+!assets/images/*.png
